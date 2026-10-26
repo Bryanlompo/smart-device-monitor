@@ -1,0 +1,19 @@
+name: C++ Unit Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile unit tests
+        run: g++ -std=c++17 tests/test_sensor_monitor.cpp simulator/SensorMonitor.cpp -o test_monitor
+
+      - name: Run unit tests
+        run: ./test_monitor
